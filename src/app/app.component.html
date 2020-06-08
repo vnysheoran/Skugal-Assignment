@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <div class="menu col-md-2">
+            <section class="content">
+                <nav class="menu menu--salal">
+                    <a class="menu__item" routerLink="/theme1">
+                        <span class="menu__item-name">Theme 1</span>
+                    </a>
+                    <a class="menu__item" routerLink="/theme2">
+                        <span class="menu__item-name">Theme 2</span>
+                    </a>
+                    <a class="menu__item" routerLink="/theme2">
+                        <span class="menu__item-name">Theme 3</span>
+                    </a>
+                </nav>
+            </section>
+        </div>
+        <div class="body col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
