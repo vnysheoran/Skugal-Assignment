@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo} from './todo';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TodoService} from '../todo.service';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-theme1',

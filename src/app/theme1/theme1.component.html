@@ -4,10 +4,17 @@
             <div class="new-todo">
                 <form class="todo-form" [formGroup]="todoForm" (ngSubmit)="onSubmit()">
                     <span>Create a TODO: </span>
-                    <input type="text" class="input-form-control" formControlName="name" placeholder="What needs to be done?">
-                    <br><br>
-                    <input type="text" class="input-form-control"  formControlName="description" placeholder="Write a description.">
-                    <input type="submit" class="hidden" value="Create TODO" />
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="text" class="input-form-control" formControlName="name" placeholder="What needs to be done?">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" class="btn btn-primary todo-create-btn" value="Create TODO" />
+                        </div>
+                    </div>
+                    <br>
+                    <span>Description of TODO: </span>
+                    <div formControlName="description" [froalaEditor]="{ theme: 'dark' }"></div>
                 </form>
             </div>
 
@@ -24,7 +31,7 @@
                     </div>
                     <div class="todo-info">
                         <span class="todo-title">{{todo.name}}</span> <br>
-                        <span class="todo-description">{{todo.description}}</span>
+                        <div class="todo-description" [froalaView]="todo.description"></div>
                     </div>
                     <div class="todo-action-btn">
                         <button class="btn-icon edit-btn" (click)="editTodo(todo.id, todo.name, todo.description)">

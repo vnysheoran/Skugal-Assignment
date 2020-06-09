@@ -3,3 +3,8 @@ body {
     background-color: rgb(50, 50, 50);
     color: #fff;
 }
+
+.fr-element.fr-view, .second-toolbar{
+    background-color: rgb(50, 50, 50) !important;
+    color: white !important;
+}
