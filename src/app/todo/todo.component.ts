@@ -21,6 +21,7 @@ export class TodoComponent implements OnInit {
 
   onSubmit(): void {
     this.todoService.addTodo(this.todoForm.value);
+    this.todoForm.reset();
   }
 
 }
