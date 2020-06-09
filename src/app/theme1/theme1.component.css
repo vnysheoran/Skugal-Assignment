@@ -1,3 +1,7 @@
+.theme1{
+    margin: 20px 20px 60px 20px;
+}
+
 .top-padding{
     margin-top: 100px;
 }
@@ -16,6 +20,14 @@
     font-size: 1.125rem;
     font-weight: 300;
     margin-top: 20px;
+}
+
+.done-todo, .done-todo .done-icon{
+    color: #85bf6b;
+}
+
+.done-todo .todo-title, .done-todo .todo-description{
+    text-decoration: line-through;
 }
 
 .todo-status, .todo-action-btn{
@@ -49,4 +61,25 @@
     font-size: 12px;
     font-weight: 100;
     margin-left: 25px;
+}
+
+.todo-form .input-form-control{
+    outline: none;
+    border: 0;
+    border-bottom: 1px dotted #666;
+    border-radius: 0;
+    padding: 0 0 5px 0;
+    width: 100%;
+    height: 50px;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #fff;
+    background: transparent;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hidden{
+    display: none;
+    visibility: hidden;
 }

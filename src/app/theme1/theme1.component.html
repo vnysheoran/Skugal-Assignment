@@ -2,7 +2,13 @@
     <div class="container">
         <div class="top-padding">
             <div class="new-todo">
-                <app-todo> </app-todo>
+                <form class="todo-form" [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+                    <span>Create a TODO: </span>
+                    <input type="text" class="input-form-control" formControlName="name" placeholder="What needs to be done?">
+                    <br><br>
+                    <input type="text" class="input-form-control"  formControlName="description" placeholder="Write a description.">
+                    <input type="submit" class="hidden" value="Create TODO" />
+                </form>
             </div>
 
             <div class="filter-todo">
@@ -10,10 +16,10 @@
             </div>
 
             <div class="todo-list">
-                <div class="todo-item" *ngFor="let todo of todos">
+                <div *ngFor="let todo of todos" class="todo-item" [ngClass]="todo.status ? 'done-todo' : ''">
                     <div class="todo-status">
-                        <button class="btn-icon">
-                            <span class="icon material-icons">done</span>
+                        <button class="btn-icon" (click)="doneTodo(todo.id, !todo.status)">
+                            <span class="icon done-icon material-icons">done</span>
                         </button>
                     </div>
                     <div class="todo-info">
@@ -21,12 +27,12 @@
                         <span class="todo-description">{{todo.description}}</span>
                     </div>
                     <div class="todo-action-btn">
-                        <button class="btn-icon edit-btn">
+                        <button class="btn-icon edit-btn" (click)="editTodo(todo.id, todo.name, todo.description)">
                             <span class="icon material-icons">edit</span>
                         </button>
 
                         <button class="btn-icon">
-                            <span class="icon material-icons">delete</span>
+                            <span class="icon material-icons" (click)="deleteTodo(todo.id)">delete</span>
                         </button>
                     </div>
                 </div>
