@@ -1,12 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo} from "./todo";
+import { Todo} from './todo';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TodoService} from '../todo.service';
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-theme1',
   templateUrl: './theme1.component.html',
-  styleUrls: ['./theme1.component.css']
+  styleUrls: ['./theme1.component.css'],
+  animations: [
+    trigger('simpleFadeAnimation', [
+        state('in', style({ backgroundColor: '#323232' })),
+        transition(':enter', [
+          style({ backgroundColor: '#636363' }),
+          animate(600 )
+        ]),
+        transition(':leave',
+          animate(600, style({ backgroundColor: '#636363' }))
+        )
+    ])
+  ]
 })
 export class Theme1Component implements OnInit {
 
@@ -26,7 +39,35 @@ export class Theme1Component implements OnInit {
 
   getTodos(): void {
     this.todoService.getTodos()
-        .subscribe(todos => this.todos = todos);
+        .subscribe(todos => {
+          if (this.todos) {
+            for (const newTodo of todos) {
+              let valueAlreadyPresent = false;
+              for (const todo of this.todos) {
+                if (todo.id === newTodo.id) {
+                  valueAlreadyPresent = true;
+                }
+              }
+              if (!valueAlreadyPresent) {
+                this.todos.push(newTodo);
+              }
+            }
+
+            for (let todo = 0; todo < (this.todos).length; todo++) {
+              let valueAlreadyPresent = false;
+              for (const newTodo of todos) {
+                if (this.todos[todo].id === newTodo.id) {
+                  valueAlreadyPresent = true;
+                }
+              }
+              if (!valueAlreadyPresent) {
+                this.todos.splice(todo, 1);
+              }
+            }
+          } else {
+            this.todos = todos;
+          }
+        });
   }
 
   doneTodo(id, status): void {
@@ -44,7 +85,6 @@ export class Theme1Component implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.todoForm.value);
     if (this.todoForm.value.id === null) {
       this.todoService.addTodo(this.todoForm.value);
     } else {

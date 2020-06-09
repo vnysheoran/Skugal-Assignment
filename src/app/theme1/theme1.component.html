@@ -16,7 +16,7 @@
             </div>
 
             <div class="todo-list">
-                <div *ngFor="let todo of todos" class="todo-item" [ngClass]="todo.status ? 'done-todo' : ''">
+                <div *ngFor="let todo of todos" class="todo-item" [ngClass]="todo.status ? 'done-todo' : ''" [@simpleFadeAnimation]="'in'">
                     <div class="todo-status">
                         <button class="btn-icon" (click)="doneTodo(todo.id, !todo.status)">
                             <span class="icon done-icon material-icons">done</span>
