@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { TodoService} from '../todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  todoForm = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl(''),
+  });
+
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    this.todoService.addTodo(this.todoForm.value);
   }
 
 }

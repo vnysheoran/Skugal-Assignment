@@ -1,1 +1,7 @@
-<p>todo works!</p>
+<form class="todo-form" [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <span>Create a TODO: </span>
+    <input type="text" class="input-form-control" formControlName="name" placeholder="What needs to be done?">
+    <br><br>
+    <input type="text" class="input-form-control"  formControlName="description" placeholder="Write a description.">
+    <input type="submit" class="hidden" value="Create TODO" />
+</form>

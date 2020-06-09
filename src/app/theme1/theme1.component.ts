@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../todo/todo';
+import { TodoService} from '../todo.service';
 
 @Component({
   selector: 'app-theme1',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Theme1Component implements OnInit {
 
-  constructor() { }
+  todos: Todo[];
+
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+    this.getTodos();
+  }
+
+  getTodos(): void {
+    this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
   }
 
 }

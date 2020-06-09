@@ -1,0 +1,52 @@
+.top-padding{
+    margin-top: 100px;
+}
+
+.new-todo{
+    margin-bottom: 100px;
+}
+
+.todo-item{
+    display: flex;
+    outline: none;
+    border-bottom: 1px dotted #666;
+    height: 60px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.todo-status, .todo-action-btn{
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 20px 0 20px;
+}
+
+.btn-icon{
+    border-radius: 60px;
+    height: 40px;
+    width: 40px;
+    border: solid 1px #2a2a2a;
+    background: #2a2a2a;
+    color: #555;
+    padding: 7px;
+}
+
+.edit-btn{
+    margin-right: 5px;
+}
+
+.todo-info{
+    flex: 1;
+    padding-right: 30px;
+    overflow: hidden;
+}
+
+.todo-description{
+    font-size: 12px;
+    font-weight: 100;
+    margin-left: 25px;
+}

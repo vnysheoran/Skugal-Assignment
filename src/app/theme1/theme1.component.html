@@ -1,3 +1,36 @@
 <div class="theme1">
-    Theme 1 works
+    <div class="container">
+        <div class="top-padding">
+            <div class="new-todo">
+                <app-todo> </app-todo>
+            </div>
+
+            <div class="filter-todo">
+
+            </div>
+
+            <div class="todo-list">
+                <div class="todo-item" *ngFor="let todo of todos">
+                    <div class="todo-status">
+                        <button class="btn-icon">
+                            <span class="icon material-icons">done</span>
+                        </button>
+                    </div>
+                    <div class="todo-info">
+                        <span class="todo-title">{{todo.name}}</span> <br>
+                        <span class="todo-description">{{todo.description}}</span>
+                    </div>
+                    <div class="todo-action-btn">
+                        <button class="btn-icon edit-btn">
+                            <span class="icon material-icons">edit</span>
+                        </button>
+
+                        <button class="btn-icon">
+                            <span class="icon material-icons">delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
