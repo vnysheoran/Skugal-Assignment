@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Todo} from './todo';
-import { FormGroup, FormControl } from '@angular/forms';
-import { TodoService} from '../todo.service';
+import {Component, OnInit} from '@angular/core';
+import {Todo} from './todo';
+import {FormControl, FormGroup} from '@angular/forms';
+import {TodoService} from '../todo.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {DomSanitizer} from '@angular/platform-browser';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-theme1',
@@ -32,7 +34,9 @@ export class Theme1Component implements OnInit {
     description: new FormControl(''),
   });
 
-  constructor(private todoService: TodoService) { }
+  downloadJsonHref: any;
+
+  constructor(private todoService: TodoService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.getTodos();
@@ -72,6 +76,7 @@ export class Theme1Component implements OnInit {
           } else {
             this.todos = todos;
           }
+          this.generateDownloadJsonUri();
         });
   }
 
@@ -100,6 +105,36 @@ export class Theme1Component implements OnInit {
 
   changeFilter(type): void {
     this.filter = type;
+  }
+
+  generateDownloadJsonUri(): void {
+    const theJSON = JSON.stringify(this.todos);
+    this.downloadJsonHref = this.sanitizer.bypassSecurityTrustUrl('data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON));
+  }
+
+  downloadPDF(): void {
+    const doc = new jsPDF();
+
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    let pdfTable = `<div id="pdfTable"> <h1>Todo List</h1><table>
+    <tr><th>Name</th><th>Description</th><th>Status</th></tr>`;
+    for (const todo of this.todos){
+      pdfTable = `${pdfTable}<tr> <td>${todo.name}</td><td>${todo.description}</td><td>${todo.status}</td> </tr>`;
+    }
+    pdfTable = `${pdfTable}</table></div>`;
+
+
+    doc.fromHTML(pdfTable, 15, 15, {
+      width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('todo.pdf');
   }
 
 }

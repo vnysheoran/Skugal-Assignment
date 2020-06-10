@@ -99,3 +99,23 @@
     color: #fff;
     font-weight: 800;
 }
+
+.filter-todo{
+    height: 40px;
+}
+
+.filter-section{
+    display: inline-block;
+    float: left;
+}
+
+.export-section{
+    display: inline-block;
+    float: right;
+}
+
+.export-btn{
+    color: #fff;
+    outline: none;
+    font-weight: 800;
+}

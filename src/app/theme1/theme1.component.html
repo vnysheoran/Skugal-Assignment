@@ -21,9 +21,16 @@
             </div>
 
             <div class="filter-todo">
-                <button class="btn filter-btn" [ngClass]="filter === null ? 'active-filter-btn' : ''" (click)="changeFilter(null)">All</button> /
-                <button class="btn filter-btn" [ngClass]="filter === false ? 'active-filter-btn' : ''"(click)="changeFilter(false)">Active</button> /
-                <button class="btn filter-btn" [ngClass]="filter === true ? 'active-filter-btn' : ''"(click)="changeFilter(true)">Done</button>
+                <div class="filter-section">
+                    <button class="btn filter-btn" [ngClass]="filter === null ? 'active-filter-btn' : ''" (click)="changeFilter(null)">All</button> /
+                    <button class="btn filter-btn" [ngClass]="filter === false ? 'active-filter-btn' : ''"(click)="changeFilter(false)">Active</button> /
+                    <button class="btn filter-btn" [ngClass]="filter === true ? 'active-filter-btn' : ''"(click)="changeFilter(true)">Done</button>
+                </div>
+
+                <div class="export-section">
+                    <a class="btn export-btn" title="Download JSON" [href]="downloadJsonHref" download="todo.json">Export JSON</a>
+                    <a class="btn export-btn" title="Download PDF" (click)="downloadPDF()">Export PDF</a>
+                </div>
             </div>
 
             <div class="todo-list">
