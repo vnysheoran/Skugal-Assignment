@@ -9,7 +9,9 @@
                             <input type="text" class="input-form-control" formControlName="name" placeholder="What needs to be done?">
                         </div>
                         <div class="col-md-1">
-                            <input type="submit" class="btn btn-primary todo-create-btn" value="Create TODO" />
+                            <input type="submit" *ngIf="!todoForm.value.id" class="btn btn-primary todo-create-btn" value="Create TODO" />
+                            <input type="submit" *ngIf="todoForm.value.id" class="btn btn-primary todo-create-btn" value="Update TODO" />
+                            <a class="btn btn-primary todo-clear-btn" (click)="todoForm.reset()">Clear</a>
                         </div>
                     </div>
                     <br>
@@ -19,28 +21,33 @@
             </div>
 
             <div class="filter-todo">
-
+                <button class="btn filter-btn" [ngClass]="filter === null ? 'active-filter-btn' : ''" (click)="changeFilter(null)">All</button> /
+                <button class="btn filter-btn" [ngClass]="filter === false ? 'active-filter-btn' : ''"(click)="changeFilter(false)">Active</button> /
+                <button class="btn filter-btn" [ngClass]="filter === true ? 'active-filter-btn' : ''"(click)="changeFilter(true)">Done</button>
             </div>
 
             <div class="todo-list">
-                <div *ngFor="let todo of todos" class="todo-item" [ngClass]="todo.status ? 'done-todo' : ''" [@simpleFadeAnimation]="'in'">
-                    <div class="todo-status">
-                        <button class="btn-icon" (click)="doneTodo(todo.id, !todo.status)">
-                            <span class="icon done-icon material-icons">done</span>
-                        </button>
-                    </div>
-                    <div class="todo-info">
-                        <span class="todo-title">{{todo.name}}</span> <br>
-                        <div class="todo-description" [froalaView]="todo.description"></div>
-                    </div>
-                    <div class="todo-action-btn">
-                        <button class="btn-icon edit-btn" (click)="editTodo(todo.id, todo.name, todo.description)">
-                            <span class="icon material-icons">edit</span>
-                        </button>
+                <div class="todo-container" *ngFor="let todo of todos">
+                    <div *ngIf="filter === null ? true : (todo.status === filter)"
+                         class="todo-item" [ngClass]="todo.status ? 'done-todo' : ''" [@simpleFadeAnimation]="'in'">
+                        <div class="todo-status">
+                            <button class="btn-icon" (click)="doneTodo(todo.id, !todo.status)">
+                                <span class="icon done-icon material-icons">done</span>
+                            </button>
+                        </div>
+                        <div class="todo-info">
+                            <span class="todo-title">{{todo.name}}</span> <br>
+                            <div class="todo-description" [froalaView]="todo.description"></div>
+                        </div>
+                        <div class="todo-action-btn">
+                            <button class="btn-icon edit-btn" (click)="editTodo(todo.id, todo.name, todo.description)">
+                                <span class="icon material-icons">edit</span>
+                            </button>
 
-                        <button class="btn-icon">
-                            <span class="icon material-icons" (click)="deleteTodo(todo.id)">delete</span>
-                        </button>
+                            <button class="btn-icon">
+                                <span class="icon material-icons" (click)="deleteTodo(todo.id)">delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

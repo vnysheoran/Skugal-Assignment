@@ -24,6 +24,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class Theme1Component implements OnInit {
 
   todos: Todo[];
+  filter = null;
 
   todoForm = new FormGroup({
     id: new FormControl(null),
@@ -95,6 +96,10 @@ export class Theme1Component implements OnInit {
       this.todoService.updateTodo(this.todoForm.value);
     }
     this.todoForm.reset();
+  }
+
+  changeFilter(type): void {
+    this.filter = type;
   }
 
 }
