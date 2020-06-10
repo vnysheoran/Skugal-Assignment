@@ -27,9 +27,10 @@
                     <button class="btn filter-btn" [ngClass]="filter === true ? 'active-filter-btn' : ''"(click)="changeFilter(true)">Done</button>
                 </div>
 
-                <div class="export-section">
-                    <a class="btn export-btn" title="Download JSON" [href]="downloadJsonHref" download="todo.json">Export JSON</a>
-                    <a class="btn export-btn" title="Download PDF" (click)="downloadPDF()">Export PDF</a>
+                <div class="export-section menu borderYtoX">
+                    <a class="btn export-btn" title="Download as JSON" [href]="downloadJsonHref" download="todo.json">Export as JSON</a>
+                    <a class="btn export-btn" title="Download as PDF" (click)="downloadPDF()">Export as PDF</a>
+                    <a class="btn export-btn" title="Download as Excel" (click)="downloadExcel()">Export as Excel</a>
                 </div>
             </div>
 

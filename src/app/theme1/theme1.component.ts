@@ -115,12 +115,6 @@ export class Theme1Component implements OnInit {
   downloadPDF(): void {
     const doc = new jsPDF();
 
-    const specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-
     let pdfTable = `<div id="pdfTable"> <h1>Todo List</h1><table>
     <tr><th>Name</th><th>Description</th><th>Status</th></tr>`;
     for (const todo of this.todos){
@@ -130,11 +124,14 @@ export class Theme1Component implements OnInit {
 
 
     doc.fromHTML(pdfTable, 15, 15, {
-      width: 190,
-      'elementHandlers': specialElementHandlers
+      width: 190
     });
 
     doc.save('todo.pdf');
   }
 
+  downloadExcel(): void {
+    console.log('Download Excel');
+    // TODO
+  }
 }
