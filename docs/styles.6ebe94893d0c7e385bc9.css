@@ -1,4 +1,4 @@
-body{background-color:#323232;color:#fff}.fr-element.fr-view,.second-toolbar{background-color:#323232!important;color:#fff!important}
+body{background-color:#323232;color:#fff}.fr-element.fr-view,.second-toolbar{background-color:#323232!important;color:#fff!important}.fr-wrapper>div:first-child:not(.fr-element){display:none;visibility:hidden}
 /*!
  * froala_editor v3.1.0 (https://www.froala.com/wysiwyg-editor)
  * License https://froala.com/wysiwyg-editor/terms/
