@@ -8,3 +8,8 @@ body {
     background-color: rgb(50, 50, 50) !important;
     color: white !important;
 }
+
+.fr-wrapper > div:first-child:not(.fr-element){
+    display: none;
+    visibility: hidden;
+}

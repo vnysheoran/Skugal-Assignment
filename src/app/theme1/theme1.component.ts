@@ -46,6 +46,10 @@ export class Theme1Component implements OnInit {
               for (const todo of this.todos) {
                 if (todo.id === newTodo.id) {
                   valueAlreadyPresent = true;
+                  if (todo.name !== newTodo.name || todo.description !== newTodo.description) {
+                    todo.name = newTodo.name;
+                    todo.description = newTodo.description;
+                  }
                 }
               }
               if (!valueAlreadyPresent) {

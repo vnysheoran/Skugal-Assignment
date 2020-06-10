@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 })
 export class TodoService {
 
+  showLoader = false;
   constructor(private firestore: AngularFirestore) { }
 
   getTodos(): Observable<any[]> {
@@ -24,6 +25,7 @@ export class TodoService {
   }
 
   addTodo(data): void {
+    this.showLoader = true;
     const dbData = {
       name: data.name,
       description: data.description,
@@ -32,46 +34,48 @@ export class TodoService {
     this.firestore.collection('todo')
         .add(dbData)
         .then(res => {
-          console.log(res);
-          // TODO add loading
+            this.showLoader = false;
         }, err => {
-          console.log(err);
+            this.showLoader = false;
         });
   }
 
   updateStatus(id, status): void {
+      this.showLoader = true;
       this.firestore
           .collection('todo')
           .doc(id)
           .update({ status })
           .then(res => {
-              // TODO loader
+              this.showLoader = false;
           }).catch(e => {
-              // TODO Error handle
+              this.showLoader = false;
           });
   }
 
   updateTodo(data): void {
+    this.showLoader = true;
     this.firestore
         .collection('todo')
         .doc(data.id)
         .update({ name: data.name, description: data.description })
         .then(res => {
-            // TODO loader
+            this.showLoader = false;
         }).catch(e => {
-        // TODO Error handle
+            this.showLoader = false;
         });
   }
 
   deleteTodo(id): void {
+      this.showLoader = true;
       this.firestore
           .collection('todo')
           .doc(id)
           .delete()
           .then(res => {
-          // TODO loader
+              this.showLoader = false;
           }).catch(e => {
-              // TODO Error handle
+              this.showLoader = false;
           });
   }
 }
