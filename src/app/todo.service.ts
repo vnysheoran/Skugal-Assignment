@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 
 import {map} from 'rxjs/operators';
 
@@ -10,7 +11,7 @@ import {map} from 'rxjs/operators';
 export class TodoService {
 
   showLoader = false;
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private toastr: ToastrService) { }
 
   getTodos(): Observable<any[]> {
     return this.firestore.collection('todo').snapshotChanges()
@@ -35,8 +36,10 @@ export class TodoService {
         .add(dbData)
         .then(res => {
             this.showLoader = false;
+            this.toastr.success(`${data.name}`, 'Todo Added', { timeOut: 2000, closeButton: true, progressBar: true });
         }, err => {
             this.showLoader = false;
+            this.toastr.error(`${data.name}`, 'Error while adding todo', { timeOut: 2000, closeButton: true, progressBar: true });
         });
   }
 
@@ -48,8 +51,10 @@ export class TodoService {
           .update({ status })
           .then(res => {
               this.showLoader = false;
+              this.toastr.success(`${status}`, 'Todo Status Updated', { timeOut: 2000, closeButton: true, progressBar: true });
           }).catch(e => {
               this.showLoader = false;
+              this.toastr.error(`${status}`, 'Error while updating todo status', { timeOut: 2000, closeButton: true, progressBar: true });
           });
   }
 
@@ -61,8 +66,10 @@ export class TodoService {
         .update({ name: data.name, description: data.description })
         .then(res => {
             this.showLoader = false;
+            this.toastr.success(`${data.name}`, 'Todo Updated', { timeOut: 2000, closeButton: true, progressBar: true });
         }).catch(e => {
             this.showLoader = false;
+            this.toastr.error(`${data.name}`, 'Error while updating todo', { timeOut: 2000, closeButton: true, progressBar: true });
         });
   }
 
@@ -72,10 +79,14 @@ export class TodoService {
           .collection('todo')
           .doc(id)
           .delete()
-          .then(res => {
+          .then((res) => {
+              console.log(res);
               this.showLoader = false;
+              this.toastr.info(`This action cannot be undone`, 'Todo Deleted', { timeOut: 2000, closeButton: true, progressBar: true });
           }).catch(e => {
               this.showLoader = false;
+              // tslint:disable-next-line:max-line-length
+              this.toastr.error(`Your todo is still with us`, 'Error while deleting todo', { timeOut: 2000, closeButton: true, progressBar: true });
           });
   }
 }

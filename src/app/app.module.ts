@@ -6,6 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { LoaderComponent } from './loader/loader.component';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     FormsModule,
-    [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()]
+    [FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()],
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
