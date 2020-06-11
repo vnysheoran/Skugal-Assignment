@@ -35,3 +35,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Google Cloud Function
 https://us-central1-skugal-assignment-d0ab8.cloudfunctions.net/uppercase
+
+## Firebase Hosting
+firebase deploy --only hosting
+https://skugal-assignment-d0ab8.web.app/
