@@ -1,41 +1,42 @@
 # Skugal-Assignment
 Skugal Assignment
 
-## Development server
+## Development servers
 
+#### Local
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+#### Github Pages
+Navigate to `https://vnysheoran.github.io/Skugal-Assignment`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Firebase Hosting
+Navigate to `https://skugal-assignment-d0ab8.web.app/` or `https://skugal-assignment-d0ab8.firebaseapp.com/`
+
 
 ## Build
 
+#### Local Build
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Build for Github Pages
+#### Build for Github Pages
 `ng build --prod --output-path docs --base-href /Skugal-Assignment/`
 
-duplicate index.html as 404.html
+duplicate index.html as 404.html and push the code to github
 
-## Github build URL
-https://vnysheoran.github.io/Skugal-Assignment/theme1
+#### Build for Firebase Hosting
+Run `ng build --prod --output-path firebase/public` to build the project for firebase hosting
 
-## Running unit tests
+`cd firebase` and run `firebase deploy --only hosting`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Google Cloud Function
-https://us-central1-skugal-assignment-d0ab8.cloudfunctions.net/uppercase
-
-## Firebase Hosting
-firebase deploy --only hosting
-https://skugal-assignment-d0ab8.web.app/
+## Functionality
+1. Allow you to create TODO with rich text description.
+2. Added realtime firestore database.
+3. When an action performed, loading spinner shown
+4. When an item added, updated or delete, fade-in animation shown
+5. A Google cloud function is in place that will automatically change the name of todo to uppercase
+6. User can update and delete the todo
+7. Filtering based on active, done and all is also given.
+8. Export as JSON, PDF, Excel also provided.
+9. Project hosted on github pages as well as Firebase hosting.
+10. Todo can be marked active or Done.
+11. There are also some subtle changes that you will notice while using the app.
