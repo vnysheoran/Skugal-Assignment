@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {map} from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import {map} from 'rxjs/operators';
 export class TodoService {
 
   showLoader = false;
-  constructor(private firestore: AngularFirestore, private toastr: ToastrService) { }
+  constructor(private firestore: AngularFirestore, private toastr: ToastrService, private http: HttpClient) { }
 
   getTodos(): Observable<any[]> {
     return this.firestore.collection('todo').snapshotChanges()
